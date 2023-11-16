@@ -1,6 +1,7 @@
 import React from 'react';
 import {Box, Flex, Heading, useColorModeValue} from "@chakra-ui/react";
 import {useRouteParams} from '../../../shared/lib';
+import {NetworkStatus} from "../../../features/NetworkStatus";
 
 const Header = () => {
   let navbarBg = useColorModeValue('rgba(244, 247, 254, 0.2)', 'rgba(11,20,55,0.5)');
@@ -54,7 +55,7 @@ const Header = () => {
           </Heading>
         </Box>
         <Box>
-          Online
+          <NetworkStatus />
         </Box>
       </Flex>
     </Box>
