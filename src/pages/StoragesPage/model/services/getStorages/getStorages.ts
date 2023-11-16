@@ -8,8 +8,8 @@ export const getStorages = createAsyncThunk<IStorage[], void>(
     const {rejectWithValue} = thunkApi;
 
     try {
-      const response = await new MockedStorageApi().getStorages();
-      // const response = await new StorageApi().getStorages();
+      // const response = await new MockedStorageApi().getStorages();
+      const response = await new StorageApi().getStorages();
       return response.data;
     } catch (e) {
       let error = 'Something went wrong...';

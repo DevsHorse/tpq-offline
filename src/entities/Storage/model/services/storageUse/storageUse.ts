@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {MockedStorageApi} from "../../../index";
 import {storagesPageActions} from "../../../../../pages/StoragesPage";
+import StorageApi from "../../api/StorageApi";
 
 
 export const storageUse = createAsyncThunk<void, {storageId: string, count: number}>(
@@ -9,10 +10,10 @@ export const storageUse = createAsyncThunk<void, {storageId: string, count: numb
     const {rejectWithValue, dispatch} = thunkApi;
 
     try {
-      const response = await new MockedStorageApi().storageUse(data);
-      // const response = await new StorageApi().storageUse();
+      // const response = await new MockedStorageApi().storageUse(data);
+      const response = await new StorageApi().storageUse(data);
 
-      await dispatch(storagesPageActions.updateStorage(response.data[0]));
+      await dispatch(storagesPageActions.updateStorage(response.data));
       return response.data;
     } catch (e) {
       let error = 'Something went wrong...';

@@ -53,7 +53,7 @@ class MockedStorageApi {
           s.productsCount += data.count;
           return s;
         })
-        res({data: [newStorage]});
+        res({data: newStorage});
       } else {
         rej('incorrect storage');
       }
@@ -71,7 +71,7 @@ class MockedStorageApi {
           s.productsCount -= data.count;
           return s;
         })
-        res({data: [newStorage]});
+        res({data: newStorage});
       } else {
         rej('incorrect storage');
       }
@@ -95,7 +95,7 @@ class MockedStorageApi {
           s.productsCount += data.count;
           return s;
         })
-        res({data: [{source: newStorage1, destination: newStorage2}]});
+        res({data: {source: newStorage1, destination: newStorage2}});
       } else {
         rej('incorrect storage');
       }
