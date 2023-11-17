@@ -1,32 +1,21 @@
-import React, {memo, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import {flexRender, Table} from "@tanstack/react-table";
-import {IStorage, storageAdd, storageInventory, storageMove, storageUse} from "../../../../entities/Storage";
+import {IStorage} from "../../../../entities/Storage";
 import {Flex, Tbody, Td, Tr} from "@chakra-ui/react";
 import {StorageMenu} from "../../../../features/StorageMenu";
-import {useAppDispatch} from "../../../../shared/lib";
+import {useStorageActionModalsContext} from "../../../../app/hooks/useStorageActionModalsContext";
+import {StorageActionModals} from "../../../../shared/types/storageActionModals";
 
 type PropsType = {
   table: Table<IStorage>
 }
 
 const TableBody = ({table}: PropsType) => {
-  const dispatch = useAppDispatch();
+  const {openModal: openStorageActionModal} = useStorageActionModalsContext();
 
-  const onStorageAdd = useCallback((storage: IStorage) => {
-    dispatch(storageAdd({storageId: storage.id, count: 1}));
-  }, []);
-
-  const onStorageMove = useCallback((storage: IStorage) => {
-    dispatch(storageMove({sourceStorageId: storage.id, destinationStorageId: 'ZHVuZGVyIG1pZmZsaW4K', count: 5}));
-  }, []);
-
-  const onStorageUse = useCallback((storage: IStorage) => {
-    dispatch(storageUse({storageId: storage.id, count: 1}));
-  }, []);
-
-  const onStorageInventory = useCallback((storage: IStorage) => {
-    dispatch(storageInventory({storageId: storage.id, count: 2000}));
-  }, []);
+  const openModal = useCallback((currentStorage: IStorage, modal: StorageActionModals) => {
+    openStorageActionModal({modal, data: {currentStorage}});
+  }, [openStorageActionModal]);
 
   return (
     <Tbody>
@@ -52,10 +41,10 @@ const TableBody = ({table}: PropsType) => {
                 justifyContent="flex-end"
               >
                 <StorageMenu
-                  onAdd={() => onStorageAdd(row.original)}
-                  onUse={() => onStorageUse(row.original)}
-                  onMove={() => onStorageMove(row.original)}
-                  onInventory={() => onStorageInventory(row.original)}
+                  onAdd={() => openModal(row.original, StorageActionModals.ADD)}
+                  onUse={() => openModal(row.original, StorageActionModals.USE)}
+                  onMove={() => openModal(row.original, StorageActionModals.MOVE)}
+                  onInventory={() => openModal(row.original, StorageActionModals.INVENTORY)}
                 />
               </Flex>
             </Td>

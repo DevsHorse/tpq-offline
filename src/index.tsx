@@ -5,6 +5,7 @@ import App from './app/App';
 import {StoreProvider} from "./app/providers/StoreProvider";
 import {ThemeProvider} from "./app/providers/ThemeProvider";
 import {BrowserRouter} from "react-router-dom";
+import ModalsProvider from "./app/providers/modals/ModalsProvider/ModalsProvider";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,9 @@ root.render(
   <BrowserRouter>
     <StoreProvider>
       <ThemeProvider>
-        <App />
+        <ModalsProvider>
+          <App />
+        </ModalsProvider>
       </ThemeProvider>
     </StoreProvider>
   </BrowserRouter>

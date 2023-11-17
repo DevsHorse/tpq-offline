@@ -12,7 +12,6 @@ export const storageAdd = createAsyncThunk<void, {storageId: string, count: numb
     try {
       // const response = await new MockedStorageApi().storageAdd(data);
       const response = await new StorageApi().storageAdd(data);
-      console.log('response: ', response);
       await dispatch(storagesPageActions.updateStorage(response.data));
       return response.data;
     } catch (e) {

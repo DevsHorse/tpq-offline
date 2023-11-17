@@ -1,4 +1,4 @@
-import { getStoragesList, getStoragesPageLoading } from "./model/selectors/storagesPageSelectors";
+import {getFilteredStoragesList, getStoragesList, getStoragesPageLoading } from "./model/selectors/storagesPageSelectors";
 import StoragesPage from "./ui/StoragesPage";
 import {getStorages} from './model/services/getStorages/getStorages';
 
@@ -6,6 +6,7 @@ export {
   StoragesPage,
   getStoragesList,
   getStoragesPageLoading,
+  getFilteredStoragesList,
   getStorages
 };
 
