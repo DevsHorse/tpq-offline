@@ -5,6 +5,7 @@ import {synchronization} from "../services/synchronization/synchronization";
 import {useAppDispatch} from "../../../shared/lib";
 import {getSynchronizationLoading} from "../selectors/synchronizationSelectors";
 import useStorageSynchronization from "../../../features/StorageSynchronization/hooks/useStorageSynchronization";
+import {isOnline} from "../../../shared/network";
 
 
 const useSynchronization = () => {
@@ -20,7 +21,7 @@ const useSynchronization = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (navigator.onLine) {
+    if (isOnline()) {
       startSynchronization();
     }
   }, [startSynchronization]);

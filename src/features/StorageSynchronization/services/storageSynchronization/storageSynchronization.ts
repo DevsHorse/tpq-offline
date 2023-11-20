@@ -4,6 +4,7 @@ import {SynthInformation} from "../../types/SynthInformation";
 import {SavedAction, UpdateStorageType} from "../../../../entities/Storage";
 import {storageSynchronizationActions} from "../../slice/storageSynchronizationSlice";
 import {getStorages} from "../../../../pages/StoragesPage";
+import {isOnline} from "../../../../shared/network";
 
 const requestToApi = (action: SavedAction, api: StorageApi) => {
   switch (action.type) {
@@ -63,11 +64,9 @@ export const storageSynchronization = createAsyncThunk(
     const {rejectWithValue, dispatch} = thunkApi;
 
     try {
-      if (navigator.onLine) {
+      if (isOnline()) {
         const storageApi = new StorageApi();
         const actions: SavedAction[] = await storageApi.offlineApi.db.getActions();
-
-        if (!actions.length) return;
 
         const actionsRequests = [];
         for (let action of actions) {
@@ -75,7 +74,9 @@ export const storageSynchronization = createAsyncThunk(
         }
 
         await actionsRequests.reduce((seq: Promise<any>, p) => seq.then(p), Promise.resolve()).then((result) => {
-          dispatch(storageSynchronizationActions.setSynthInformation(result));
+          if (result) {
+            dispatch(storageSynchronizationActions.setSynthInformation(result));
+          }
           dispatch(getStorages());
         });
       }

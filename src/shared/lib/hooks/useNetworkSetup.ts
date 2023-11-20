@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {networkActions} from "../../network";
+import {isOnline, networkActions} from "../../network";
 import {useSynchronization} from "../../../app/synchronization";
 
 
@@ -21,7 +21,7 @@ export const useNetworkSetup = () => {
 
     window.addEventListener('online', onlineHandler);
     window.addEventListener('offline', offlineHandler);
-    dispatch(networkActions.changeStatus(navigator.onLine));
+    dispatch(networkActions.changeStatus(isOnline()));
 
     return () => {
       window.removeEventListener('online', onlineHandler);

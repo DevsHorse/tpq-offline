@@ -1,6 +1,7 @@
 import OnlineStorageApi from "./OnlineStorageApi";
 import OfflineStorageApi from "./OfflineStorageApi";
 import {IStorageApi, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
+import {isOnline} from "../../../../shared/network";
 
 
 class StorageApi {
@@ -9,7 +10,7 @@ class StorageApi {
   readonly offlineApi = new OfflineStorageApi();
 
   constructor() {
-    if (navigator.onLine) {
+    if (isOnline()) {
       this.api = this.onlineApi;
     } else {
       this.api = this.offlineApi;
@@ -17,9 +18,7 @@ class StorageApi {
   }
 
   async getStorages() {
-    const response = await this.api.getStorages();
-    this.offlineApi.db.setStorages(response.data);
-    return response;
+    return await this.api.getStorages();
   }
 
   async storageAdd(data: StorageUpdateData) {
