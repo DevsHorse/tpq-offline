@@ -1,18 +1,31 @@
 import {useEffect} from "react";
 import {useAppDispatch} from "./useAppDispatch";
 import {networkActions} from "../../network";
+import {useSynchronization} from "../../../app/synchronization";
 
 
 export const useNetworkSetup = () => {
   const dispatch = useAppDispatch();
 
+  const {startSynchronization} = useSynchronization();
+
   useEffect(() => {
-    window.addEventListener('online', (e) => {
+    const onlineHandler = () => {
       dispatch(networkActions.changeStatus(true));
-    })
-    window.addEventListener('offline', (e) => {
+      startSynchronization();
+    };
+
+    const offlineHandler = () => {
       dispatch(networkActions.changeStatus(false));
-    })
+    }
+
+    window.addEventListener('online', onlineHandler);
+    window.addEventListener('offline', offlineHandler);
     dispatch(networkActions.changeStatus(navigator.onLine));
-  }, []);
+
+    return () => {
+      window.removeEventListener('online', onlineHandler);
+      window.removeEventListener('offline', offlineHandler);
+    }
+  }, [dispatch, startSynchronization]);
 }

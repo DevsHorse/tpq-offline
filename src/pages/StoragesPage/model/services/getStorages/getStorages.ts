@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {IStorage, MockedStorageApi, StorageApi} from "../../../../../entities/Storage";
+import {IStorage, StorageApi} from "../../../../../entities/Storage";
 
 
 export const getStorages = createAsyncThunk<IStorage[], void>(
@@ -8,7 +8,6 @@ export const getStorages = createAsyncThunk<IStorage[], void>(
     const {rejectWithValue} = thunkApi;
 
     try {
-      // const response = await new MockedStorageApi().getStorages();
       const response = await new StorageApi().getStorages();
       return response.data;
     } catch (e) {

@@ -18,6 +18,7 @@ type PropsType = {
     text: string;
     icon: IconType;
     action: () => void;
+    isDisabled?: boolean;
   }[]
 }
 
@@ -77,6 +78,7 @@ const ThreeDotsMenu = ({items}: PropsType) => {
             _focus={{
               bg: 'transparent'
             }}
+            isDisabled={item.isDisabled}
             mb='10px'
             onClick={item.action}>
             <Flex align='center'>

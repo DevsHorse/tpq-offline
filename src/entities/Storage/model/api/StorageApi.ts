@@ -1,40 +1,41 @@
-import {$api} from "../../../../shared/api/api";
+import OnlineStorageApi from "./OnlineStorageApi";
+import OfflineStorageApi from "./OfflineStorageApi";
+import {IStorageApi, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
 
 
 class StorageApi {
-  $api = $api;
+  api: IStorageApi;
+  readonly onlineApi = new OnlineStorageApi();
+  readonly offlineApi = new OfflineStorageApi();
+
+  constructor() {
+    if (navigator.onLine) {
+      this.api = this.onlineApi;
+    } else {
+      this.api = this.offlineApi;
+    }
+  }
 
   async getStorages() {
-    return await this.$api.get('/storage');
+    const response = await this.api.getStorages();
+    this.offlineApi.db.setStorages(response.data);
+    return response;
   }
 
-  async storageAdd(data: {
-    storageId: string;
-    count: number;
-  }) {
-    return await this.$api.post('/storage/add', data);
+  async storageAdd(data: StorageUpdateData) {
+    return await this.api.storageAdd(data);
   }
 
-  async storageUse(data: {
-    storageId: string;
-    count: number;
-  }) {
-    return await this.$api.post('/storage/use', data);
+  async storageUse(data: StorageUpdateData) {
+    return await this.api.storageUse(data);
   }
 
-  async storageMove(data: {
-    sourceStorageId: string,
-    destinationStorageId: string,
-    count: number
-  }) {
-    return await this.$api.post('/storage/move', data);
+  async storageMove(data: StorageMoveData) {
+    return await this.api.storageMove(data);
   }
 
-  async storageInventory(data: {
-    storageId: string;
-    count: number;
-  }) {
-    return await this.$api.post('/storage/inventory', data);
+  async storageInventory(data: StorageUpdateData) {
+    return await this.api.storageInventory(data);
   }
 }
 

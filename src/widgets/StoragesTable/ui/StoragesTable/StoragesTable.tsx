@@ -1,9 +1,9 @@
 import React, {useMemo} from 'react';
-import {Flex, Box, Table, Text, useColorModeValue} from '@chakra-ui/react';
+import {Flex, Box, Table, Text, useColorModeValue, Skeleton} from '@chakra-ui/react';
 import {createColumnHelper, getCoreRowModel, useReactTable} from "@tanstack/react-table";
 import {Card} from "../../../../shared/ui/Card";
 import {useSelector} from "react-redux";
-import {getStoragesList} from "../../../../pages/StoragesPage";
+import {getStoragesList, getStoragesPageLoading} from "../../../../pages/StoragesPage";
 import {IStorage} from "../../../../entities/Storage";
 import {TableHeaderItem} from "../TableHeaderItem";
 import {TableCellItem} from "../TableCellItem";

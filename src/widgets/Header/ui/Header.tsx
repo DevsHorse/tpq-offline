@@ -42,7 +42,8 @@ const Header = () => {
       pt='8px'
       top={{ base: '12px' }}
       w={{
-        base: 'calc(100vw - 80px)'
+        lg: 'calc(100vw - 80px)',
+        sm: 'calc(100vw - 30px)'
       }}>
       <Flex
         w="100%"

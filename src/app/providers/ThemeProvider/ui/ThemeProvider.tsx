@@ -8,7 +8,7 @@ const ThemeProvider = (props: PropsWithChildren) => {
       theme={theme}
       toastOptions={{
         defaultOptions: {
-          position: 'top',
+          position: 'bottom-right',
           duration: 5000,
           isClosable: true,
         }

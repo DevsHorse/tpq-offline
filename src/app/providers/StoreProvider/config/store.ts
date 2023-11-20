@@ -3,13 +3,17 @@ import {configureStore, ReducersMapObject} from "@reduxjs/toolkit";
 import {storagesPageReducer} from "../../../../pages/StoragesPage";
 import {storageReducer} from "../../../../entities/Storage";
 import {networkReducer} from "../../../../shared/network";
+import {storageSynchronizationReducer} from "../../../../features/StorageSynchronization";
+import {synchronizationReducer} from "../../../synchronization";
 
 
 export const createReduxStore = (initialState?: StateSchema) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     storagesPage: storagesPageReducer,
     storage: storageReducer,
-    network: networkReducer
+    network: networkReducer,
+    synchronization: synchronizationReducer,
+    storageSynchronization: storageSynchronizationReducer
   };
 
   return configureStore({

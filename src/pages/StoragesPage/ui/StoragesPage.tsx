@@ -3,26 +3,21 @@ import {Box} from "@chakra-ui/react";
 import {StoragesTable} from "../../../widgets/StoragesTable";
 import {getStorages} from "../model/services/getStorages/getStorages";
 import {useAppDispatch} from "../../../shared/lib";
-import {useSelector} from "react-redux";
-import {getStoragesPageLoading} from "../model/selectors/storagesPageSelectors";
 
 const StoragesPage = () => {
-  const isPageLoading = useSelector(getStoragesPageLoading);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getStorages());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Box
-      p="40px"
+      p={{lg: "40px", sm: "15px"}}
       h="100%"
       flexGrow="1"
     >
-      {isPageLoading ? null : (
-        <StoragesTable />
-      )}
+      <StoragesTable />
     </Box>
   );
 };
