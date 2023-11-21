@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 import api from './shared/api/api';
 import OnlineStorageApi from "./entities/Storage/model/api/OnlineStorageApi";
 
-jest.mock('./shared/config/config');
+jest.mock('./shared/api/api');
 OnlineStorageApi.register(api);
 
 jest.mock('./shared/network', () => ({
