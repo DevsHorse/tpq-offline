@@ -5,7 +5,7 @@ import {synchronization} from "../services/synchronization/synchronization";
 import {useAppDispatch} from "../../../shared/lib";
 import {getSynchronizationLoading} from "../selectors/synchronizationSelectors";
 import useStorageSynchronization from "../../../features/StorageSynchronization/hooks/useStorageSynchronization";
-import {isOnline} from "../../../shared/network";
+import {isOnline} from "../../../shared/utils/isOnline";
 
 
 const useSynchronization = () => {

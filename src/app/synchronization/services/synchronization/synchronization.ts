@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {storageSynchronization} from "../../../../features/StorageSynchronization";
-import {isOnline} from "../../../../shared/network";
+import {isOnline} from "../../../../shared/utils/isOnline";
 
 
 export const synchronization = createAsyncThunk(

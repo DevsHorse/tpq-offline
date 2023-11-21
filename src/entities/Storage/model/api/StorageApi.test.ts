@@ -1,5 +1,5 @@
 import StorageApi from "./StorageApi";
-import {isOnline} from "../../../../shared/network";
+import {isOnline} from "../../../../shared/utils/isOnline";
 import OnlineStorageApi from "./OnlineStorageApi";
 import OfflineStorageApi from "./OfflineStorageApi";
 

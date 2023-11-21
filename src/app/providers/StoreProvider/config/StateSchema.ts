@@ -1,8 +1,8 @@
 import {StoragesPageSchema} from "../../../../pages/StoragesPage";
 import {StorageSchema} from "../../../../entities/Storage";
-import {NetworkSchema} from "../../../../shared/network";
 import {StorageSynchronizationSchema} from "../../../../features/StorageSynchronization";
 import {SynchronizationSchema} from "../../../synchronization";
+import {NetworkSchema} from "../../../../features/Network";
 
 
 export interface StateSchema {

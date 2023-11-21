@@ -1,7 +1,7 @@
 import OnlineStorageApi from "./OnlineStorageApi";
 import OfflineStorageApi from "./OfflineStorageApi";
 import {IStorageApi, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
-import {isOnline} from "../../../../shared/network";
+import {isOnline} from "../../../../shared/utils/isOnline";
 
 
 class StorageApi {

@@ -1,8 +1,9 @@
 import React, {useMemo} from 'react';
-import {CircleIcon} from "../../shared/ui/CircleIcon";
+import {CircleIcon} from "../../../shared/ui/CircleIcon";
 import {Box} from "@chakra-ui/react";
 import {useSelector} from "react-redux";
-import {getNetworkStatusAsString} from "../../shared/network";
+import {getNetworkStatusAsString} from "../model/selectors/networkSelectors";
+
 
 const NetworkStatus = () => {
   const networkStatus = useSelector(getNetworkStatusAsString);

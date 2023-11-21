@@ -16,6 +16,7 @@ const StoragesPage = () => {
       p={{lg: "40px", sm: "15px"}}
       h="100%"
       flexGrow="1"
+      data-testid="storages-page"
     >
       <StoragesTable />
     </Box>

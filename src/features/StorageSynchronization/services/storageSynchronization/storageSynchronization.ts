@@ -4,7 +4,7 @@ import {SynthInformation} from "../../types/SynthInformation";
 import {SavedAction, UpdateStorageType} from "../../../../entities/Storage";
 import {storageSynchronizationActions} from "../../slice/storageSynchronizationSlice";
 import {getStorages} from "../../../../pages/StoragesPage";
-import {isOnline} from "../../../../shared/network";
+import {isOnline} from "../../../../shared/utils/isOnline";
 
 const requestToApi = (action: SavedAction, api: StorageApi) => {
   switch (action.type) {

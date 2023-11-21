@@ -1,7 +1,8 @@
 import {useEffect} from "react";
 import {useAppDispatch} from "./useAppDispatch";
-import {isOnline, networkActions} from "../../network";
+import {isOnline} from "../../utils/isOnline";
 import {useSynchronization} from "../../../app/synchronization";
+import { networkActions } from "../../../features/Network";
 
 
 export const useNetworkSetup = () => {
