@@ -2,11 +2,12 @@ import {IStorage} from "../types/Storage";
 import {UpdateStorageType} from "../types/UpdateStorageType";
 import {SavedAction} from "../types/SavedAction";
 import {UpdateStorageOptions} from "../types/UpdateStorageOptions";
+import {StorageDBKeys} from "../types/StorageDBKeys";
 
 
 class StorageDB {
-  private readonly lsStoragesKey = 'pt-app-storages';
-  private readonly lsStoragesActionsKey = 'pt-app-storages-actions';
+  private readonly lsStoragesKey: StorageDBKeys = StorageDBKeys.STORAGES;
+  private readonly lsStoragesActionsKey: StorageDBKeys = StorageDBKeys.ACTIONS;
 
   constructor() {
     this.init();
@@ -20,6 +21,7 @@ class StorageDB {
   }
 
   setStorages(storages: IStorage[]) {
+    if (!storages) return;
     localStorage.setItem(this.lsStoragesKey, JSON.stringify(storages));
   }
 

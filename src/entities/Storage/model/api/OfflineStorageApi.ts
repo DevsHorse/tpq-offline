@@ -1,10 +1,21 @@
 import {IStorageApi, ResponsePromise, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
 import StorageDB from "../db/StorageDB";
 import {UpdateStorageType} from "../types/UpdateStorageType";
+import {IStorage} from "../types/Storage";
 
 
 class OfflineStorageApi implements IStorageApi {
-  readonly db = new StorageDB();
+  private readonly db = new StorageDB();
+  private static instance: OfflineStorageApi;
+  private constructor() {};
+
+  static getInstance() {
+    if (OfflineStorageApi.instance == null) {
+      OfflineStorageApi.instance = new OfflineStorageApi();
+    }
+
+    return OfflineStorageApi.instance;
+  }
 
   getStorages(): ResponsePromise {
     return new Promise((res) => {
@@ -51,6 +62,18 @@ class OfflineStorageApi implements IStorageApi {
       }).then(storage => res({data: storage}))
         .catch(rej);
     })
+  }
+
+  setStorages(storages: IStorage[]) {
+    return this.db.setStorages(storages);
+  }
+
+  getActions() {
+    return this.db.getActions();
+  }
+
+  removeAction(id: number) {
+    return this.db.removeAction(id);
   }
 }
 

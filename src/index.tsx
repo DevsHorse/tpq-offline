@@ -6,6 +6,9 @@ import {StoreProvider} from "./app/providers/StoreProvider";
 import {ThemeProvider} from "./app/providers/ThemeProvider";
 import {BrowserRouter} from "react-router-dom";
 import ModalsProvider from "./app/providers/modals/ModalsProvider/ModalsProvider";
+import {initApi} from "./app/config/initApi";
+
+initApi();
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

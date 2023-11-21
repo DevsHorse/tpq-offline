@@ -8,9 +8,7 @@ import {useToast} from "@chakra-ui/react";
 import StorageSynchronizationToastContent
   from "../ui/StorageSynchronizationToastContent/StorageSynchronizationToastContent";
 import {getStoragesList} from "../../../pages/StoragesPage";
-import {StorageApi} from "../../../entities/Storage";
-
-const storagesApi = new StorageApi();
+import OfflineStorageApi from "../../../entities/Storage/model/api/OfflineStorageApi";
 
 const useStorageSynchronization = () => {
   const storages = useSelector(getStoragesList);
@@ -35,7 +33,7 @@ const useStorageSynchronization = () => {
   }, [synthInformation, isLoading, toast]);
 
   useEffect(() => {
-    storagesApi.offlineApi.db.setStorages(storages);
+    OfflineStorageApi.getInstance().setStorages(storages);
   }, [storages]);
 }
 

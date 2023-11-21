@@ -3,3 +3,13 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+import api from './shared/api/api';
+import OnlineStorageApi from "./entities/Storage/model/api/OnlineStorageApi";
+
+jest.mock('./shared/config/config');
+OnlineStorageApi.register(api);
+
+jest.mock('./shared/network', () => ({
+  isOnline: jest.fn()
+}))

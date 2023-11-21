@@ -6,8 +6,8 @@ import {isOnline} from "../../../../shared/network";
 
 class StorageApi {
   api: IStorageApi;
-  readonly onlineApi = new OnlineStorageApi();
-  readonly offlineApi = new OfflineStorageApi();
+  readonly onlineApi = OnlineStorageApi.getInstance();
+  readonly offlineApi = OfflineStorageApi.getInstance();
 
   constructor() {
     if (isOnline()) {

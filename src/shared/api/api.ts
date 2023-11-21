@@ -1,13 +1,11 @@
 import axios from 'axios';
 
-export const $api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  headers: {
+    "x-api-key": process.env.REACT_APP_API_KEY,
+    "Content-Type": "application/json"
+  }
 });
 
-$api.interceptors.request.use((config) => {
-  if (config.headers) {
-    config.headers['x-api-key'] = process.env.REACT_APP_API_KEY;
-    config.headers['Content-Type'] ='application/json';
-  }
-  return config;
-});
+export default api;

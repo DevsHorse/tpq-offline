@@ -34,7 +34,7 @@ const wrappedRequest = (action: SavedAction, api: StorageApi) => {
 
       try {
         const response = await requestToApi(action, api);
-        api.offlineApi.db.removeAction(action.id);
+        api.offlineApi.removeAction(action.id);
 
         if (response) {
           newSynthInformation.push({
@@ -44,7 +44,7 @@ const wrappedRequest = (action: SavedAction, api: StorageApi) => {
         }
       } catch (e: any) {
         if (e.code !== "ERR_NETWORK") {
-          api.offlineApi.db.removeAction(action.id);
+          api.offlineApi.removeAction(action.id);
           newSynthInformation.push({
             action,
             success: false
@@ -66,7 +66,7 @@ export const storageSynchronization = createAsyncThunk(
     try {
       if (isOnline()) {
         const storageApi = new StorageApi();
-        const actions: SavedAction[] = await storageApi.offlineApi.db.getActions();
+        const actions: SavedAction[] = await storageApi.offlineApi.getActions();
 
         const actionsRequests = [];
         for (let action of actions) {

@@ -1,27 +1,46 @@
 import {IStorageApi, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
-import {$api} from "../../../../shared/api/api";
+import {AxiosInstance} from "axios";
 
 class OnlineStorageApi implements IStorageApi {
-  private $api = $api;
+  private static instance: OnlineStorageApi;
+  private static api: AxiosInstance;
+  private constructor() {};
+
+  static getInstance() {
+    if (!OnlineStorageApi.api) {
+      throw new Error('OnlineStoreApi: config is not defined');
+    }
+
+    if (OnlineStorageApi.instance == null) {
+      OnlineStorageApi.instance = new OnlineStorageApi();
+    }
+
+    return OnlineStorageApi.instance;
+  }
+
+  static register(api: AxiosInstance) {
+    OnlineStorageApi.api = api;
+    return OnlineStorageApi.getInstance();
+  }
 
   async getStorages() {
-    return await this.$api.get('/storage');
+    return await OnlineStorageApi.api.get('/storage');
   }
 
   async storageAdd(data: StorageUpdateData) {
-    return await this.$api.post('/storage/add', data);
+    return await OnlineStorageApi.api.post('/storage/add', data);
   }
 
   async storageUse(data: StorageUpdateData) {
-    return await this.$api.post('/storage/use', data);
+    return await OnlineStorageApi.api.post('/storage/use', data);
   }
 
   async storageMove(data: StorageMoveData) {
-    return await this.$api.post('/storage/move', data);
+    return await OnlineStorageApi.api.post('/storage/move', data);
   }
 
   async storageInventory(data: StorageUpdateData) {
-    return await this.$api.post('/storage/inventory', data);
+    return await OnlineStorageApi.api.post('/storage/inventory', data);
   }
 }
 
