@@ -8,7 +8,7 @@ import {
 import StorageInventoryModal from "../../../../widgets/modals/StorageInventoryModal/ui/StorageInventoryModal";
 import {StorageMoveModal} from "../../../../widgets/modals/StorageMoveModal";
 import {StorageUseModal} from "../../../../widgets/modals/StorageUseModal";
-import {StorageActionModals} from "../../../../shared/types/storageActionModals";
+import {StorageActionModals} from "../../../../entities/Storage";
 
 const initialModalDataState = {
   currentStorage: {} as IStorage,
@@ -36,10 +36,6 @@ const StorageAddModalProvider = ({children}: PropsWithChildren) => {
             currentStorage: options.data.currentStorage
           })
           modals[options.modal].onOpen();
-        },
-        closeModal: (modal: StorageActionModals) => {
-          modals[modal].onClose();
-          setModalData(initialModalDataState)
         }
       }}
     >

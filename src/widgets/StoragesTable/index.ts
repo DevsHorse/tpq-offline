@@ -1,1 +1,3 @@
-export {StoragesTable} from './ui/StoragesTable';
+import {StoragesTable} from './ui/StoragesTable';
+
+export {StoragesTable};

@@ -12,6 +12,7 @@ export type {StorageSchema} from './model/types/StorageSchema';
 export type {UpdateStorageOptions} from './model/types/UpdateStorageOptions';
 export type {SavedAction} from './model/types/SavedAction';
 export type {StorageDBKeys} from './model/types/StorageDBKeys';
+export {StorageActionModals} from './model/types/StorageActionModals';
 export {UpdateStorageType} from './model/types/UpdateStorageType';
 
 export {

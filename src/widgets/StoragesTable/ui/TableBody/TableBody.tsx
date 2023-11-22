@@ -4,7 +4,7 @@ import {IStorage} from "../../../../entities/Storage";
 import {Flex, Tbody, Td, Tr} from "@chakra-ui/react";
 import {StorageMenu} from "../../../../features/StorageMenu";
 import {useStorageActionModalsContext} from "../../../../app/hooks/useStorageActionModalsContext";
-import {StorageActionModals} from "../../../../shared/types/storageActionModals";
+import {StorageActionModals} from "../../../../entities/Storage";
 import {useSelector} from "react-redux";
 import {getStoragesPageLoading} from "../../../../pages/StoragesPage";
 import TableBodyLoader from "../TableBodyLoader/TableBodyLoader";

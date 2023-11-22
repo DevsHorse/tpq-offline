@@ -2,8 +2,7 @@ import {storageSynchronization} from "./services/storageSynchronization/storageS
 import {storageSynchronizationReducer, storageSynchronizationActions} from './slice/storageSynchronizationSlice';
 import useStorageSynchronization from './hooks/useStorageSynchronization';
 import {getStorageSynchronizationLoading, getStorageSynchronizationInformation} from './selectors/storageSynchronizationSelectors';
-
-export type {StorageSynchronizationSchema} from './types/StorageSynchronizationSchema';
+import {type StorageSynchronizationSchema} from './types/StorageSynchronizationSchema';
 
 export {
   storageSynchronization,
@@ -11,5 +10,6 @@ export {
   storageSynchronizationActions,
   useStorageSynchronization,
   getStorageSynchronizationLoading,
-  getStorageSynchronizationInformation
+  getStorageSynchronizationInformation,
+  type StorageSynchronizationSchema
 }

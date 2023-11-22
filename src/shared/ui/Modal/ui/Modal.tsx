@@ -8,7 +8,7 @@ import {
   ModalHeader,
   ModalOverlay
 } from "@chakra-ui/react";
-import {IModal} from "./types/Modal";
+import {IModal} from "../types/Modal";
 
 type PropsType = {
   title: string;

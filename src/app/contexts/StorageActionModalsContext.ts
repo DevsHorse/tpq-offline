@@ -1,6 +1,6 @@
 import {createContext} from "react";
 import {IStorage} from "../../entities/Storage";
-import {StorageActionModals} from "../../shared/types/storageActionModals";
+import {StorageActionModals} from "../../entities/Storage";
 
 export type StorageActionModalsContextDataType = {
   currentStorage: IStorage;
@@ -12,6 +12,5 @@ export type StorageActionModalsContextOpenDataType = {
 }
 
 export const StorageActionModalsContext = createContext({
-  closeModal: (modal: StorageActionModals) => {},
   openModal: (options: StorageActionModalsContextOpenDataType) => {}
 });

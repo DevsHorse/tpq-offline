@@ -1,4 +1,7 @@
-import Modal from './Modal';
+import Modal from './ui/Modal';
 import { IModal } from './types/Modal';
 
-export {Modal, type IModal};
+export {
+  Modal,
+  type IModal
+};

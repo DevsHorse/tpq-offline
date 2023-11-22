@@ -31,7 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test:unit": "react-scripts test",
+    "test:unit": "react-scripts test --watchAll=false",
     "test:e2e": "start-server-and-test start http://localhost:3000 cypress:open",
     "cypress:open": "cypress open",
     "eject": "react-scripts eject"
