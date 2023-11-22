@@ -14,7 +14,8 @@ Then:
 
 ## Tests
 
-1) Jest unit tests - `npm run test`
-2) React testing library tests - `npm run test` 
+1) Jest unit tests - `npm run test:unit`
+2) React testing library tests - `npm run test:unit` 
+3) Cypress e2e tests - `npm run test:e2e`
 
 

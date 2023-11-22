@@ -31,13 +31,16 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test:unit": "react-scripts test",
+    "test:e2e": "start-server-and-test start http://localhost:3000 cypress:open",
+    "cypress:open": "cypress open",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest",
+      "plugin:cypress/recommended"
     ]
   },
   "browserslist": {
@@ -57,5 +60,10 @@
       "^@src(.*)": "<rootDir>/src$1",
       "axios": "axios/dist/node/axios.cjs"
     }
+  },
+  "devDependencies": {
+    "cypress": "^13.5.1",
+    "eslint-plugin-cypress": "^2.15.1",
+    "start-server-and-test": "^2.0.3"
   }
 }

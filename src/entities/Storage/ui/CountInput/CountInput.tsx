@@ -24,6 +24,7 @@ const CountInput = (props: PropsType) => {
         onBlur={onBlur}
         placeholder="Count..."
         type="number"
+        data-testid="Input.Count"
       />
       <FormErrorMessage>{error}</FormErrorMessage>
     </FormControl>

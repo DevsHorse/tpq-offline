@@ -68,6 +68,7 @@ const StorageMoveModal = (props: PropsType) => {
               value={formValues.destinationStorageId}
               onChange={handleFormChange}
               onBlur={handleFormBlur}
+              data-testid="Input.Select"
             >
               {storages.map((storage) => (
                 <option key={storage.id} value={storage.id}>{storage.name}</option>

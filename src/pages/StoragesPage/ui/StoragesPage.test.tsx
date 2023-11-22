@@ -15,6 +15,6 @@ describe('Storages page', () => {
 
   test('Storages Page opens', () => {
     render(<Page />)
-    expect(screen.getByTestId('storages-page')).toBeInTheDocument();
+    expect(screen.getByTestId('StoragesPage')).toBeInTheDocument();
   })
 })

@@ -26,11 +26,12 @@ const TableBody = ({table}: PropsType) => {
       <TableBodyLoader isLoading={isPageLoading} columnsLength={table.options.columns.length}>
         {table.getRowModel().rows.map((row) => {
           return (
-            <Tr key={row.id}>
+            <Tr key={row.id} data-testid="StoragesPage.Storage">
               {row.getVisibleCells().map((cell) => {
                 return (
                   <Td
                     key={cell.id}
+                    data-testid={`StoragesPage.Storage.Cell(${cell.id})`}
                     fontSize={{ sm: '14px' }}
                     minW={{ sm: 'auto', md: '200px', lg: 'auto' }}
                     borderColor='transparent'>
@@ -46,6 +47,7 @@ const TableBody = ({table}: PropsType) => {
                   justifyContent="flex-end"
                 >
                   <StorageMenu
+                    rowId={row.id}
                     storage={row.original}
                     onAdd={() => openModal(row.original, StorageActionModals.ADD)}
                     onUse={() => openModal(row.original, StorageActionModals.USE)}

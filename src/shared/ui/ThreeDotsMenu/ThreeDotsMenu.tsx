@@ -14,6 +14,7 @@ import {MdOutlineMoreHoriz} from "react-icons/md";
 import {IconType} from "react-icons";
 
 type PropsType = {
+  rowId: string;
   items: {
     text: string;
     icon: IconType;
@@ -22,7 +23,7 @@ type PropsType = {
   }[]
 }
 
-const ThreeDotsMenu = ({items}: PropsType) => {
+const ThreeDotsMenu = ({items, rowId}: PropsType) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const iconColor = useColorModeValue('brand.500', 'white');
@@ -50,7 +51,9 @@ const ThreeDotsMenu = ({items}: PropsType) => {
         h='37px'
         lineHeight='100%'
         onClick={onOpen}
-        borderRadius='10px'>
+        borderRadius='10px'
+        data-testid={`StoragesPage.Storage.Button(row_${rowId})`}
+      >
         <Icon as={MdOutlineMoreHoriz} color={iconColor} w='24px' h='24px' />
       </MenuButton>
       <MenuList
@@ -62,7 +65,9 @@ const ThreeDotsMenu = ({items}: PropsType) => {
         bg={bgList}
         boxShadow={bgShadow}
         borderRadius='20px'
-        p='15px'>
+        p='15px'
+        data-testid={`StoragesPage.Storage.Button.List(row_${rowId})`}
+      >
 
         {items.map((item) => (
           <MenuItem
@@ -80,7 +85,9 @@ const ThreeDotsMenu = ({items}: PropsType) => {
             }}
             isDisabled={item.isDisabled}
             mb='10px'
-            onClick={item.action}>
+            onClick={item.action}
+            data-testid={`StoragesPage.Storage.Button.List.Action(row_${rowId}_${item.text})`}
+          >
             <Flex align='center'>
               <Icon as={item.icon} h='16px' w='16px' me='8px' />
               <Text fontSize='sm' fontWeight='400'>

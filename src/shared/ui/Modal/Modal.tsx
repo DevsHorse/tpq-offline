@@ -30,7 +30,7 @@ const Modal = (props: PropsType) => {
   return (
     <ChakraModal isOpen={isOpen} onClose={onClose} isCentered>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent data-testid="Modal">
         <ModalHeader>{title}</ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={6}>
@@ -43,10 +43,11 @@ const Modal = (props: PropsType) => {
             onClick={onSubmit}
             isDisabled={!!buttons.submit?.isDisabled}
             isLoading={!!buttons.submit?.isLoading}
+            data-testid="Modal.SubmitButton"
           >
             {buttons.submit?.text || 'Submit'}
           </Button>
-          <Button onClick={onClose}>{buttons.cancel || 'Cancel'}</Button>
+          <Button data-testid="Modal.CancelButton" onClick={onClose}>{buttons.cancel || 'Cancel'}</Button>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>

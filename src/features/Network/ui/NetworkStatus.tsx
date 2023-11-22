@@ -20,7 +20,7 @@ const NetworkStatus = () => {
   }), [])
 
   return (
-    <Box display="flex" gap="10px" alignItems="center">
+    <Box data-testid="NetworkStatus" display="flex" gap="10px" alignItems="center">
       {statuses[networkStatus].text}
       <CircleIcon color={statuses[networkStatus].color} />
     </Box>

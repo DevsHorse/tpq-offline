@@ -8,6 +8,7 @@ import {ThreeDotsMenu} from "../../../../shared/ui/ThreeDotsMenu";
 import {IStorage} from "../../../../entities/Storage";
 
 type PropsType = {
+  rowId: string;
   storage: IStorage;
   onAdd: () => void;
   onUse: () => void;
@@ -16,7 +17,7 @@ type PropsType = {
 }
 
 const StorageMenu = (props: PropsType) => {
-  const { onAdd, onUse, onMove, onInventory, storage } = props;
+  const { onAdd, onUse, onMove, onInventory, storage, rowId } = props;
   const {productsCount} = storage;
 
   const listItems = useMemo(() => {
@@ -47,7 +48,7 @@ const StorageMenu = (props: PropsType) => {
   }, [onAdd, onUse, onMove, onInventory, productsCount]);
 
   return (
-    <ThreeDotsMenu items={listItems} />
+    <ThreeDotsMenu items={listItems} rowId={rowId} />
   );
 }
 
