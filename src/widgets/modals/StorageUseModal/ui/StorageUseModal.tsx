@@ -1,76 +1,83 @@
 import {useCallback, useState} from 'react';
-import {IModal, Modal} from "../../../../shared/ui/Modal";
-import {CountInput, IStorage, storageUse, useStorageResponseNotification} from "../../../../entities/Storage";
-import {useAppDispatch} from "../../../../shared/lib";
-import {FormikHelpers} from "formik";
-import {FormStateType} from "../types/formTypes";
-import useModalForm from "../hooks/useModalForm";
+import {IModal, Modal} from '../../../../shared/ui/Modal';
+import {CountInput, storageUse, useStorageResponseNotification} from '../../../../entities/Storage';
+import {useAppDispatch} from '../../../../shared/lib';
+import {FormikHelpers} from 'formik';
+import {FormStateType} from '../types/formTypes';
+import useModalForm from '../hooks/useModalForm';
+import {StorageActionModalsContextDataType} from '../../../../app/contexts/StorageActionModalsContext';
+import {AnyAction} from '@reduxjs/toolkit';
 
-type PropsType = {
-  currentStorage: IStorage;
-} & IModal;
+
+
+type PropsType = StorageActionModalsContextDataType & IModal;
 
 const StorageUseModal = (props: PropsType) => {
-  const {currentStorage, onClose} = props;
+	const {currentStorage, onClose, updateStorages} = props;
 
-  const dispatch = useAppDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-  const {displayNotification} = useStorageResponseNotification();
+	const dispatch = useAppDispatch();
+	const [isLoading, setIsLoading] = useState(false);
+	const {displayNotification} = useStorageResponseNotification();
 
-  const handleSubmit = useCallback((values: FormStateType, formikHelpers: FormikHelpers<FormStateType>) => {
-    setIsLoading(true);
+	const handleSubmit = useCallback((values: FormStateType, formikHelpers: FormikHelpers<FormStateType>) => {
+		setIsLoading(true);
 
-    dispatch(storageUse({
-      storageId: currentStorage.id,
-      count: Number(values.count)
-    }))
-      .then((e: any) => {
-        setIsLoading(false);
-        displayNotification(!e.error, e.payload);
-        formikHelpers.resetForm();
-        onClose();
-      });
-  }, [currentStorage, onClose, dispatch, displayNotification]);
+		dispatch(storageUse({
+			storageId: currentStorage.id,
+			count: Number(values.count)
+		}))
+			.then((action: AnyAction) => {
+				setIsLoading(false);
+				displayNotification(!action.error, action.payload);
 
-  const {
-    submitForm,
-    resetForm,
-    isValid: isFormValid,
-    errors: formErrors,
-    values: formValues,
-    handleChange: handleFormChange,
-    handleBlur: handleFormBlur,
-  } = useModalForm(handleSubmit, currentStorage);
+				if (updateStorages) {
+					updateStorages(action.payload);
+				}
 
-  const handleClose = useCallback(() => {
-    resetForm();
-    onClose();
-  }, [onClose, resetForm]);
+				formikHelpers.resetForm();
+				onClose();
+			});
+	}, [currentStorage, onClose, updateStorages, dispatch, displayNotification]);
 
-  return (
-    <Modal
-      isOpen={props.isOpen}
-      onClose={handleClose}
-      title="Use products"
-      bodyElement={(
-        <CountInput
-          isInvalid={!!formErrors.count}
-          value={formValues.count}
-          onChange={handleFormChange}
-          onBlur={handleFormBlur}
-          error={formErrors.count}
-        />
-      )}
-      buttons={{
-        submit: {
-          text: 'Use',
-          isDisabled: !isFormValid,
-          isLoading: isLoading,
-        }
-      }}
-      onSubmit={submitForm}
-    />
-  );
+	const {
+		submitForm,
+		resetForm,
+		isValid: isFormValid,
+		errors: formErrors,
+		values: formValues,
+		handleChange: handleFormChange,
+		handleBlur: handleFormBlur,
+	} = useModalForm(handleSubmit, currentStorage);
+
+	const handleClose = useCallback(() => {
+		resetForm();
+		onClose();
+	}, [onClose, resetForm]);
+
+	return (
+		<Modal
+			isOpen={props.isOpen}
+			onClose={handleClose}
+			title="Use products"
+			bodyElement={(
+				<CountInput
+					isInvalid={!!formErrors.count}
+					value={formValues.count}
+					onChange={handleFormChange}
+					onBlur={handleFormBlur}
+					error={formErrors.count}
+				/>
+			)}
+			buttons={{
+				submit: {
+					text: 'Use',
+					isDisabled: !isFormValid,
+					isLoading: isLoading,
+				}
+			}}
+			onSubmit={submitForm}
+		/>
+	);
 };
 
 export default StorageUseModal;

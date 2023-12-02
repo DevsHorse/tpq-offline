@@ -1,3 +1,3 @@
-import CircleIcon from "./CircleIcon";
+import CircleIcon from './CircleIcon';
 
 export {CircleIcon};

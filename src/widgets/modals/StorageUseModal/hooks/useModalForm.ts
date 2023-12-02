@@ -1,17 +1,17 @@
-import {FormikHelpers, useFormik} from "formik";
-import {FormStateType} from "../types/formTypes";
-import {formValidate} from "../lib/formValidate";
-import {IStorage} from "../../../../entities/Storage";
+import {FormikHelpers, useFormik} from 'formik';
+import {FormStateType} from '../types/formTypes';
+import {formValidate} from '../lib/formValidate';
+import {IStorage} from '../../../../entities/Storage';
 
 const useModalForm = (
-  onSubmit: (values: FormStateType, formikHelpers: FormikHelpers<FormStateType>) => (void | Promise<any>),
-  storage: IStorage
+	onSubmit: (values: FormStateType, formikHelpers: FormikHelpers<FormStateType>) => (void | Promise<never>),
+	storage: IStorage
 ) => {
-  return useFormik<FormStateType>({
-    initialValues: {count: ''},
-    validate: (values) => formValidate(values, storage),
-    onSubmit: onSubmit
-  });
+	return useFormik<FormStateType>({
+		initialValues: {count: ''},
+		validate: (values) => formValidate(values, storage),
+		onSubmit: onSubmit
+	});
 };
 
 export default useModalForm;

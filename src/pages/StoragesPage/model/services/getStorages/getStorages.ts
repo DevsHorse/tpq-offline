@@ -1,20 +1,15 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {IStorage, StorageApi} from "../../../../../entities/Storage";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import {IStorage, StorageApi} from '../../../../../entities/Storage';
+import {getThunkError} from '../../../../../shared/utils';
 
 
 export const getStorages = createAsyncThunk<IStorage[], void>(
-  'storagesPage/getStorages',
-  async (props, thunkApi) => {
-    const {rejectWithValue} = thunkApi;
-
-    try {
-      const response = await new StorageApi().getStorages();
-      return response.data;
-    } catch (e) {
-      let error = 'Something went wrong...';
-      if (e instanceof Error) {
-        error = e.message;
-      }
-      return rejectWithValue(error);
-    }
-})
+	'storagesPage/getStorages',
+	async (_, thunkApi) => {
+		try {
+			const response = await new StorageApi().getStorages();
+			return response.data;
+		} catch (e) {
+			return thunkApi.rejectWithValue(getThunkError(e));
+		}
+	});

@@ -1,80 +1,81 @@
-import {IStorageApi, ResponsePromise, StorageMoveData, StorageUpdateData} from "../types/StorageApi";
-import StorageDB from "../db/StorageDB";
-import {UpdateStorageType} from "../types/UpdateStorageType";
-import {IStorage} from "../types/Storage";
+import {IStorageApi, ResponsePromise, StorageMoveData, StorageUpdateData} from '../types/StorageApi';
+import StorageDB from '../db/StorageDB';
+import {UpdateStorageType} from '../types/UpdateStorageType';
+import {IStorage} from '../types/Storage';
 
 
 class OfflineStorageApi implements IStorageApi {
-  private readonly db = new StorageDB();
-  private static instance: OfflineStorageApi;
-  private constructor() {};
+	private readonly db = new StorageDB();
+	private static instance: OfflineStorageApi;
 
-  static getInstance() {
-    if (OfflineStorageApi.instance == null) {
-      OfflineStorageApi.instance = new OfflineStorageApi();
-    }
+	private constructor() {}
 
-    return OfflineStorageApi.instance;
-  }
+	static getInstance() {
+		if (OfflineStorageApi.instance == null) {
+			OfflineStorageApi.instance = new OfflineStorageApi();
+		}
 
-  getStorages(): ResponsePromise {
-    return new Promise((res) => {
-      const storages = this.db.getStorages();
-      res({data: storages});
-    })
-  }
+		return OfflineStorageApi.instance;
+	}
 
-  storageAdd(data: StorageUpdateData): ResponsePromise {
-    return new Promise(async (res, rej) => {
-      this.db.updateStorage({
-        data,
-        type: UpdateStorageType.ADD
-      }).then(storage => res({data: storage}))
-        .catch(rej);
-    })
-  }
+	getStorages(): ResponsePromise {
+		return new Promise((resolve) => {
+			const storages = this.db.getStorages();
+			resolve({data: storages});
+		});
+	}
 
-  storageUse(data: StorageUpdateData): ResponsePromise {
-    return new Promise((res, rej) => {
-      this.db.updateStorage({
-        data,
-        type: UpdateStorageType.USE
-      }).then(storage => res({data: storage}))
-        .catch(rej);
-    })
-  }
+	storageAdd(data: StorageUpdateData): ResponsePromise {
+		return new Promise(async (resolve, reject) => {
+			this.db.updateStorage({
+				data,
+				type: UpdateStorageType.ADD
+			}).then(storage => resolve({data: storage}))
+				.catch(reject);
+		});
+	}
 
-  storageMove(data: StorageMoveData): ResponsePromise {
-    return new Promise((res, rej) => {
-      this.db.updateStorage({
-        data,
-        type: UpdateStorageType.MOVE
-      }).then(storages => res({data: storages}))
-        .catch(rej);
-    })
-  }
+	storageUse(data: StorageUpdateData): ResponsePromise {
+		return new Promise((resolve, reject) => {
+			this.db.updateStorage({
+				data,
+				type: UpdateStorageType.USE
+			}).then(storage => resolve({data: storage}))
+				.catch(reject);
+		});
+	}
 
-  storageInventory(data: StorageUpdateData): ResponsePromise {
-    return new Promise((res, rej) => {
-      this.db.updateStorage({
-        data,
-        type: UpdateStorageType.INVENTORY
-      }).then(storage => res({data: storage}))
-        .catch(rej);
-    })
-  }
+	storageMove(data: StorageMoveData): ResponsePromise {
+		return new Promise((resolve, reject) => {
+			this.db.updateStorage({
+				data,
+				type: UpdateStorageType.MOVE
+			}).then(storages => resolve({data: storages}))
+				.catch(reject);
+		});
+	}
 
-  setStorages(storages: IStorage[]) {
-    return this.db.setStorages(storages);
-  }
+	storageInventory(data: StorageUpdateData): ResponsePromise {
+		return new Promise((resolve, reject) => {
+			this.db.updateStorage({
+				data,
+				type: UpdateStorageType.INVENTORY
+			}).then(storage => resolve({data: storage}))
+				.catch(reject);
+		});
+	}
 
-  getActions() {
-    return this.db.getActions();
-  }
+	setStorages(storages: IStorage[]) {
+		return this.db.setStorages(storages);
+	}
 
-  removeAction(id: number) {
-    return this.db.removeAction(id);
-  }
+	getActions() {
+		return this.db.getActions();
+	}
+
+	removeAction(id: number) {
+		return this.db.removeAction(id);
+	}
 }
 
 export default OfflineStorageApi;

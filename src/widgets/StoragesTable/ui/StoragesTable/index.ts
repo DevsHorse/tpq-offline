@@ -1,3 +1,3 @@
-import StoragesTable from "./StoragesTable";
+import StoragesTable from './StoragesTable';
 
 export {StoragesTable};

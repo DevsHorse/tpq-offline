@@ -1,3 +1,3 @@
-import {StorageMenu} from "./ui/StorageMenu";
+import StorageMenu from './ui/StorageMenu';
 
 export {StorageMenu};

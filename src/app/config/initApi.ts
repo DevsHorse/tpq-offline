@@ -1,8 +1,8 @@
-import OnlineStorageApi from "../../entities/Storage/model/api/OnlineStorageApi";
-import api from "../../shared/api/api";
-import OfflineStorageApi from "../../entities/Storage/model/api/OfflineStorageApi";
+import api from '../../shared/api/api';
+import {OnlineStorageApi} from '../../entities/Storage';
+import {OfflineStorageApi} from '../../entities/Storage';
 
 export const initApi = () => {
-  OnlineStorageApi.register(api);
-  OfflineStorageApi.getInstance();
-}
+	OnlineStorageApi.register(api);
+	OfflineStorageApi.getInstance();
+};

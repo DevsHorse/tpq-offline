@@ -1,4 +1,4 @@
-import {IStorage} from "../../../../entities/Storage";
+import {IStorage} from '../../../../entities/Storage';
 
 
 export interface StoragesPageSchema {

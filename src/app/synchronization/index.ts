@@ -1,15 +1,14 @@
-import { SynchronizationSchema } from "./types/SynchronizationSchema";
-import {synchronizationActions, synchronizationReducer} from './slice/synchronizationSlice';
-import {synchronization} from './services/synchronization/synchronization';
-import useSynchronization from './hooks/useSynchronization';
-import {getSynchronizationLoading} from './selectors/synchronizationSelectors';
-
-export type {SynchronizationSchema};
+import {AppSynchronizationSchema} from './types/AppSynchronizationSchema';
+import {appSynchronizationActions, appSynchronizationReducer} from './slice/appSynchronizationSlice';
+import {appSynchronization} from './services/appSynchronization/appSynchronization';
+import useAppSynchronization from './hooks/useAppSynchronization';
+import {getAppSynchronizationLoading} from './selectors/appSynchronizationSelectors';
 
 export {
-  synchronizationActions,
-  synchronizationReducer,
-  synchronization,
-  useSynchronization,
-  getSynchronizationLoading
-}
+	appSynchronizationActions,
+	appSynchronizationReducer,
+	appSynchronization,
+	useAppSynchronization,
+	getAppSynchronizationLoading,
+	type AppSynchronizationSchema,
+};

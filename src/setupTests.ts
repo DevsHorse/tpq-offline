@@ -5,11 +5,11 @@
 import '@testing-library/jest-dom';
 
 import api from './shared/api/api';
-import OnlineStorageApi from "./entities/Storage/model/api/OnlineStorageApi";
+import OnlineStorageApi from './entities/Storage/model/api/OnlineStorageApi';
 
 jest.mock('./shared/api/api');
 OnlineStorageApi.register(api);
 
 jest.mock('./shared/utils/isOnline', () => ({
-  isOnline: jest.fn()
-}))
+	isOnline: jest.fn()
+}));

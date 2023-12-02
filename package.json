@@ -34,13 +34,14 @@
     "test:unit": "react-scripts test --watchAll=false",
     "test:e2e": "start-server-and-test start http://localhost:3000 cypress:open",
     "cypress:open": "cypress open",
+    "lint:ts": "npx eslint \"./src/**/*.{ts,tsx}\"",
+    "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:cypress/recommended"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -63,7 +64,9 @@
   },
   "devDependencies": {
     "cypress": "^13.5.1",
+    "eslint": "^8.55.0",
     "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-react": "^7.33.2",
     "start-server-and-test": "^2.0.3"
   }
 }

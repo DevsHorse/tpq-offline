@@ -1,5 +1,5 @@
-import {StorageMoveData, StorageUpdateData} from "./StorageApi";
-import {UpdateStorageType} from "./UpdateStorageType";
+import {StorageMoveData, StorageUpdateData} from './StorageApi';
+import {UpdateStorageType} from './UpdateStorageType';
 
 
 export type UpdateStorageOptions = {

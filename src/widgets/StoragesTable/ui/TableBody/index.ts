@@ -1,3 +1,3 @@
-import TableBody from "./TableBody";
+import TableBody from './TableBody';
 
 export {TableBody};

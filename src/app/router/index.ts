@@ -1,3 +1,7 @@
-import AppRouter from "./ui/AppRouter";
+import { useRouteParams } from './hooks/useRouteParams';
+import AppRouter from './ui/AppRouter';
 
-export { AppRouter };
+export {
+	AppRouter,
+	useRouteParams
+};

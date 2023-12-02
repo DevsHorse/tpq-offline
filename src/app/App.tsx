@@ -1,17 +1,21 @@
-import {MainLayout} from "../shared/layouts/MainLayout";
-import {Header} from "../widgets/Header";
-import AppRouter from "./router/ui/AppRouter";
-import {useNetworkSetup} from "../shared/lib";
+import {MainLayout} from '../shared/layouts/MainLayout';
+import {Header} from '../widgets/Header';
+import {AppRouter, useRouteParams} from './router';
+import {useNetworkSetup} from '../features/Network';
+import {useAppSynchronization} from './synchronization';
 
 function App() {
-  useNetworkSetup();
+	const {name, isHeaderDisplay} = useRouteParams();
+	const {startSynchronization} = useAppSynchronization();
+	useNetworkSetup(startSynchronization);
 
-  return (
-    <MainLayout
-      header={<Header />}
-      content={<AppRouter />}
-    />
-  );
+	return (
+		<MainLayout
+			isHeaderDisplay={isHeaderDisplay}
+			header={<Header pageName={name} />}
+			content={<AppRouter />}
+		/>
+	);
 }
 
 export default App;

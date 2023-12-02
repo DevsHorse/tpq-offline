@@ -15,7 +15,10 @@ Then:
 ## Tests
 
 1) Jest unit tests - `npm run test:unit`
-2) React testing library tests - `npm run test:unit` 
-3) Cypress e2e tests - `npm run test:e2e`
+2) Cypress e2e tests - `npm run test:e2e`
+
+## Lint
+1) Lint start `npm run lint:ts`
+2) Lint fix `npm run lint:ts:fix`
 
 

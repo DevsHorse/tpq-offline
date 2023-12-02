@@ -1,3 +1,3 @@
-import TableHeaderItem from "./TableHeaderItem";
+import TableHeaderItem from './TableHeaderItem';
 
 export {TableHeaderItem};

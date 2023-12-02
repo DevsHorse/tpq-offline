@@ -1,27 +1,20 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
-import {storagesPageActions} from "../../../../../pages/StoragesPage";
-import StorageApi from "../../api/StorageApi";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import StorageApi from '../../api/StorageApi';
+import {IStorage} from '../../types/Storage';
+import {getThunkError} from '../../../../../shared/utils';
 
 
 export const storageMove = createAsyncThunk<
-  void,
-  {sourceStorageId: string, destinationStorageId: string, count: number}
+  {source: IStorage, destination: IStorage},
+  {sourceStorageId: string, destinationStorageId: string, count: number},
+  {rejectValue: string}
 >(
-  'storage/move',
-  async (data, thunkApi) => {
-    const {rejectWithValue, dispatch} = thunkApi;
-
-    try {
-      const response = await new StorageApi().storageMove(data);
-
-      await dispatch(storagesPageActions.updateStorage(response.data.source));
-      await dispatch(storagesPageActions.updateStorage(response.data.destination));
-      return response.data;
-    } catch (e) {
-      let error = 'Something went wrong...';
-      if (e instanceof Error) {
-        error = e.message;
-      }
-      return rejectWithValue(error);
-    }
-  })
+	'storage/move',
+	async (data, thunkApi) => {
+		try {
+			const response = await new StorageApi().storageMove(data);
+			return response.data;
+		} catch (e) {
+			return thunkApi.rejectWithValue(getThunkError(e));
+		}
+	});

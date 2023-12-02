@@ -1,6 +1,9 @@
-import StoreProvider from "./ui/StoreProvider";
+import StoreProvider from './ui/StoreProvider';
+import {StateSchema} from './config/StateSchema';
+import {AppDispatch} from './config/store';
 
-export {StoreProvider};
-
-export type {StateSchema} from './config/StateSchema'
-export type {AppDispatch} from './config/store';
+export {
+	StoreProvider,
+	type StateSchema,
+	type AppDispatch,
+};
