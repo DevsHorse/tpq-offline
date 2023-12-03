@@ -1,3 +1,3 @@
 import StorageMoveToast from './StorageMoveToast';
 
-export {StorageMoveToast};
+export { StorageMoveToast };

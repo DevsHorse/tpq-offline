@@ -1,41 +1,44 @@
 import OnlineStorageApi from './OnlineStorageApi';
 import OfflineStorageApi from './OfflineStorageApi';
-import {IStorageApi, StorageMoveData, StorageUpdateData} from '../types/StorageApi';
-import {isOnline} from '../../../../shared/utils';
-
+import {
+  IStorageApi,
+  StorageMoveData,
+  StorageUpdateData,
+} from '../types/StorageApi';
+import { isOnline } from '../../../../shared/utils';
 
 class StorageApi {
-	readonly api: IStorageApi;
-	readonly onlineApi = OnlineStorageApi.getInstance();
-	readonly offlineApi = OfflineStorageApi.getInstance();
+  readonly api: IStorageApi;
+  readonly onlineApi = OnlineStorageApi.getInstance();
+  readonly offlineApi = OfflineStorageApi.getInstance();
 
-	constructor() {
-		if (isOnline()) {
-			this.api = this.onlineApi;
-		} else {
-			this.api = this.offlineApi;
-		}
-	}
+  constructor() {
+    if (isOnline()) {
+      this.api = this.onlineApi;
+    } else {
+      this.api = this.offlineApi;
+    }
+  }
 
-	async getStorages() {
-		return await this.api.getStorages();
-	}
+  async getStorages() {
+    return await this.api.getStorages();
+  }
 
-	async storageAdd(data: StorageUpdateData) {
-		return await this.api.storageAdd(data);
-	}
+  async storageAdd(data: StorageUpdateData) {
+    return await this.api.storageAdd(data);
+  }
 
-	async storageUse(data: StorageUpdateData) {
-		return await this.api.storageUse(data);
-	}
+  async storageUse(data: StorageUpdateData) {
+    return await this.api.storageUse(data);
+  }
 
-	async storageMove(data: StorageMoveData) {
-		return await this.api.storageMove(data);
-	}
+  async storageMove(data: StorageMoveData) {
+    return await this.api.storageMove(data);
+  }
 
-	async storageInventory(data: StorageUpdateData) {
-		return await this.api.storageInventory(data);
-	}
+  async storageInventory(data: StorageUpdateData) {
+    return await this.api.storageInventory(data);
+  }
 }
 
 export default StorageApi;

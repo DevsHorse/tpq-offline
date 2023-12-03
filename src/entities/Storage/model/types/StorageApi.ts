@@ -1,17 +1,17 @@
-import {AxiosResponse} from 'axios';
+import { AxiosResponse } from 'axios';
 
 export type StorageUpdateData = {
   storageId: string;
   count: number;
-}
+};
 
 export type StorageMoveData = {
-  sourceStorageId: string,
-  destinationStorageId: string,
-  count: number
-}
+  sourceStorageId: string;
+  destinationStorageId: string;
+  count: number;
+};
 
-export type ResponsePromise = Promise<AxiosResponse | {data: any}>
+export type ResponsePromise = Promise<AxiosResponse | { data: any }>;
 
 export interface IStorageApi {
   getStorages(): ResponsePromise;

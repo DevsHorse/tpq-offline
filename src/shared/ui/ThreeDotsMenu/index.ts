@@ -1,3 +1,3 @@
 import ThreeDotsMenu from './ThreeDotsMenu';
 
-export {ThreeDotsMenu};
+export { ThreeDotsMenu };

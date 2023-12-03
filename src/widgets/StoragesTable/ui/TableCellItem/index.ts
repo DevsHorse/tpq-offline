@@ -1,3 +1,3 @@
 import TableCellItem from './TableCellItem';
 
-export {TableCellItem};
+export { TableCellItem };

@@ -1,4 +1,4 @@
-import {SynchronizationInformation} from './SynchronizationInformation';
+import { SynchronizationInformation } from './SynchronizationInformation';
 
 export interface StoragesSynchronizationSchema {
   isLoading: boolean;

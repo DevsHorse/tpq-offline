@@ -1,10 +1,9 @@
-import {UpdateStorageOptions} from './UpdateStorageOptions';
-import {IStorage} from './Storage';
-
+import { UpdateStorageOptions } from './UpdateStorageOptions';
+import { IStorage } from './Storage';
 
 export type OfflineHistoryAction = {
-  id: number,
+  id: number;
   storages: {
-    [id: string]: IStorage
-  }
+    [id: string]: IStorage;
+  };
 } & UpdateStorageOptions;

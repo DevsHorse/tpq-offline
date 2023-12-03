@@ -1,3 +1,3 @@
 import ModalsProvider from './ui/ModalsProvider';
 
-export {ModalsProvider};
+export { ModalsProvider };

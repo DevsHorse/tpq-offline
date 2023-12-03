@@ -1,3 +1,3 @@
 import StorageActionModalsProvider from './ui/StorageActionModalsProvider';
 
-export {StorageActionModalsProvider};
+export { StorageActionModalsProvider };

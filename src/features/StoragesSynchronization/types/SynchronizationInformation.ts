@@ -1,7 +1,6 @@
-import {OfflineHistoryAction} from '../../../entities/Storage';
-
+import { OfflineHistoryAction } from '../../../entities/Storage';
 
 export type SynchronizationInformation = {
   action: OfflineHistoryAction;
   success: boolean;
-}
+};

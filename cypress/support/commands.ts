@@ -7,4 +7,3 @@ Cypress.Commands.addAll(storageModalCommands);
 Cypress.Commands.addAll(networkCommands);
 
 export {};
-

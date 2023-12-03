@@ -1,18 +1,18 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {getThunkError, isOnline} from '../../../../shared/utils';
-import {storagesPageSynchronization} from '../../../../pages/StoragesPage';
-
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { getThunkError, isOnline } from '../../../../shared/utils';
+import { storagesPageSynchronization } from '../../../../pages/StoragesPage';
 
 export const appSynchronization = createAsyncThunk(
-	'storagesPageSynchronization/storagesPageSynchronization',
-	async (data, thunkApi) => {
-		const {rejectWithValue, dispatch} = thunkApi;
+  'storagesPageSynchronization/storagesPageSynchronization',
+  async (data, thunkApi) => {
+    const { rejectWithValue, dispatch } = thunkApi;
 
-		try {
-			if (isOnline()) {
-				await dispatch(storagesPageSynchronization());
-			}
-		} catch (e) {
-			return rejectWithValue(getThunkError(e));
-		}
-	});
+    try {
+      if (isOnline()) {
+        await dispatch(storagesPageSynchronization());
+      }
+    } catch (e) {
+      return rejectWithValue(getThunkError(e));
+    }
+  },
+);

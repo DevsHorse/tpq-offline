@@ -11,5 +11,5 @@ jest.mock('./shared/api/api');
 OnlineStorageApi.register(api);
 
 jest.mock('./shared/utils/isOnline', () => ({
-	isOnline: jest.fn()
+  isOnline: jest.fn(),
 }));
